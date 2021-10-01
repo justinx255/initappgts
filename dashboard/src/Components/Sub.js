@@ -12,6 +12,7 @@ export default function Sub() {
   </p>
   <li>
     <Link to="/about">hai</Link>
+    <Link to="/register">register</Link>
     </li>
   <a
     className="App-link"
