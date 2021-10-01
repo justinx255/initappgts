@@ -26,12 +26,19 @@ module.exports = {
             events: "events",
         },
     },
-    output: {
-        publicPath: "auto",
-        chunkFilename: "[id].[contenthash].js",
-    },
+    // output: {
+    //     publicPath: "auto",
+    //     chunkFilename: "[id].[contenthash].js",
+    // },
     module: {
         rules: [
+            {
+                test: /bootstrap\.js$/,
+                loader: "bundle-loader",
+                options: {
+                    lazy: true
+                }
+            },
             {
                 test: /\.m?js$/,
                 type: "javascript/auto",
@@ -52,16 +59,15 @@ module.exports = {
     plugins: [
         new ModuleFederationPlugin({
             name: "shell",
-            filename: "remoteEntry.js",
+            // remotes: {
+            //     order: "order@http://localhost:3003/remoteEntry.js",
+            //     dashboard: "dashboard@http://localhost:3001/remoteEntry.js",
+            //     register: "register@http://localhost:3002/remoteEntry.js",
+            // },
             remotes: {
-                order: "order@http://localhost:3003/remoteEntry.js",
-                dashboard: "dashboard@http://localhost:3001/remoteEntry.js",
-                register: "register@http://localhost:3002/remoteEntry.js",
-                shell: "shell@http://localhost:3000/remoteEntry.js",
-            },
-            exposes: {
-                "./Shell": "./src/Shell",
-                // "./Service": "./src/Service",
+                Order: "Order@http://localhost:3003/remoteEntry.js",
+                Dashboard: "Dashboard@http://localhost:3001/remoteEntry.js",
+                Register: "Register@http://localhost:3002/remoteEntry.js",
             },
             shared: ["react", "react-dom",
                 // "./src/Service",

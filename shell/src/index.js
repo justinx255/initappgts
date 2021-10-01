@@ -1,1 +1,3 @@
-import ('./bootstrap.js')
+import bootstrap from './bootstrap'
+
+bootstrap(() => { })

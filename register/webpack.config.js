@@ -16,10 +16,10 @@ module.exports = {
     },
     // hot: "only",
   },
-  output: {
-    publicPath: "auto",
-    chunkFilename: "[id].[contenthash].js",
-  },
+  // output: {
+  //   publicPath: "auto",
+  //   chunkFilename: "[id].[contenthash].js",
+  // },
   module: {
     rules: [
       {
@@ -45,13 +45,13 @@ module.exports = {
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: "register",
+      name: "Register",
       filename: "remoteEntry.js",
       remotes: {
         shell: "shell@http://localhost:3000/remoteEntry.js",
       },
       exposes: {
-        "./TodayWidget": "./src/index",
+        "./App": "./src/App",
         // "./DepositsWidget": "./src/DepositsWidget",
       },
       shared: [

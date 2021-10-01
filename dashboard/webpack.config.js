@@ -16,10 +16,11 @@ module.exports = {
     },
     // hot: "only",
   },
-  output: {
-    publicPath: "auto",
-    chunkFilename: "[id].[contenthash].js",
-  },
+  // output: {
+  //   publicPath: "auto",
+
+  //   chunkFilename: "[id].[contenthash].js",
+  // },
   module: {
     rules: [
       {
@@ -45,13 +46,12 @@ module.exports = {
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: "dashboard",
+      name: "Dashboard",
       filename: "remoteEntry.js",
-      remotes: {
-        shell: "shell@http://localhost:3000/remoteEntry.js",
-      },
       exposes: {
-        "./TodayWidget": "./src/App.js",
+        // "./App": "./src/App",
+        "./App": "./src/App",
+
         // "./DepositsWidget": "./src/DepositsWidget",
       },
       shared: [
